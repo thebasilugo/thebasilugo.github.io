@@ -132,7 +132,7 @@ export default function CallToAction() {
 							through any of the following channels:
 						</p>
 
-						<div className="space-y-4">
+						<div className="space-y-4 grid md:grid-cols-3 gap-2">
 							<SocialLink
 								href="mailto:basilugo2@gmail.com"
 								icon={Mail}
