@@ -34,31 +34,31 @@ const Projects = () => {
 				"A route planning and logistics simulator with interactive mapping and scheduling tools. Leveraged Firebase for real-time data updates and user authentication, enhancing operational efficiency.",
 			technologies: ["Next.js", "TypeScript", "TailwindCSS", "Firebase"],
 			category: "Next.js",
-			date: "Nov 2024",
+			date: "Pending",
 			sourceCode: "https://github.com/thebasilugo/checkpointride",
 			preview: "https://thebasilugo.github.io/checkpointride",
 			featured: true,
 		},
-		// {
-		//   name: "KicksConfetti",
-		//   description:
-		//     "A vibrant e-commerce platform specializing in sneakers and related apparel. Integrated secure payment gateways, advanced product filtering, and a user-friendly interface to optimize the shopping experience.",
-		//   technologies: ["Next.js", "TypeScript", "TailwindCSS", "Firebase"],
-		//   category: "Next.js",
-		//   date: "Oct 2024",
-		//   sourceCode: "https://github.com/thebasilugo/kicks-confetti",
-		//   preview: "https://kicks-confetti.vercel.app",
-		//   featured: true,
-		// },
+		{
+			name: "KicksConfetti",
+			description:
+				"A vibrant e-commerce platform specializing in sneakers and related apparel. Integrated secure payment gateways, advanced product filtering, and a user-friendly interface to optimize the shopping experience.",
+			technologies: ["Next.js", "TypeScript", "TailwindCSS"],
+			category: "Next.js",
+			date: "Pending",
+			sourceCode: "https://github.com/thebasilugo/kicks-confetti",
+			preview: "https://thebasilugo.github.io/kicksconfetti",
+			featured: true,
+		},
 		{
 			name: "TaskFlow",
 			description:
 				"A dynamic project management tool featuring drag-and-drop task organization, real-time updates, and collaborative features. Emphasized responsive design for accessibility across devices.",
 			technologies: ["React", "TypeScript", "TailwindCSS"],
 			category: "React",
-			date: "Sep 2024",
+			date: "May 2024",
 			sourceCode: "https://github.com/thebasilugo/task-flow",
-			preview: "https://task-flow-app.vercel.app",
+			preview: "https://thebasilugo.github.io/taskflow",
 			featured: true,
 		},
 		// {
@@ -111,6 +111,26 @@ const Projects = () => {
 		// 	sourceCode: "https://github.com/thebasilugo/task-management-app",
 		// 	preview: "https://task-management-app.vercel.app",
 		// },
+		{
+			name: "Rivergate Onyx",
+			description:
+				"A website designed for Rivergate Onyx, a company focused on helping companies with building and improving on their productivity, liquidity, and profitability through a number of investment opportunities and channels.",
+			technologies: ["HTML", "CSS", "JavaScript", "TailwindCSS"],
+			// category: "Next.js",
+			date: "Apr 2025",
+			sourceCode: "https://github.com/thebasilugo/rivergateonyx",
+			preview: "https://thebasilugo.github.io/rivergateonyx",
+		},
+		{
+			name: "NMTA",
+			description:
+				"A website designed for Nollywood Movie and Television Awards, a movie and entertainment focused company.",
+			technologies: ["HTML", "CSS", "JavaScript", "TailwindCSS"],
+			// category: "Next.js",
+			date: "Pending",
+			sourceCode: "https://github.com/thebasilugo/nmta",
+			preview: "https://thebasilugo.github.io/nmta",
+		},
 	];
 
 	const categories = ["All", "Next.js", "React Native", "React"];
