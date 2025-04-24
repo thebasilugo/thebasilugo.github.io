@@ -334,12 +334,12 @@ export default function Resume() {
 								seamless and secure user experience.
 							</li>
 						</ul>
-					</div>
+					</div> */}
 
 					{/* Project 2 */}
 					{/* <div className="mb-3">
 						<div className="flex items-baseline gap-2 mb-1">
-							<h3 className="font-bold">BudgetApp</h3>
+							<h3 className="font-bold">Budget App</h3>
 							<span className="text-sm">React, TypeScript, TailwindCSS</span>
 							<Link
 								href="#"
