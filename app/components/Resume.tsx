@@ -173,7 +173,7 @@ export default function Resume() {
 								students aged 10 and below to create their first webpage using
 								HTML, CSS, and JavaScript.{" "}
 								<Link
-									href="#"
+									href="https://thebasilugo.github.io/betsefer/"
 									className="text-blue-600 hover:underline print:text-black"
 								>
 									Click here to view
