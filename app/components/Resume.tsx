@@ -173,7 +173,7 @@ export default function Resume() {
 								students aged 10 and below to create their first webpage using
 								HTML, CSS, and JavaScript.{" "}
 								<Link
-									href="#"
+									href="https://thebasilugo.github.io/betsefer/"
 									className="text-blue-600 hover:underline print:text-black"
 								>
 									Click here to view
@@ -313,7 +313,7 @@ export default function Resume() {
 					</h2>
 
 					{/* Project 1 */}
-					{/* <div className="mb-3">
+					<div className="mb-3">
 						<div className="flex items-baseline gap-2 mb-1">
 							<h3 className="font-bold">StreamR</h3>
 							<span className="text-sm">
@@ -334,7 +334,7 @@ export default function Resume() {
 								seamless and secure user experience.
 							</li>
 						</ul>
-					</div>
+					</div> */}
 
 					{/* Project 2 */}
 					<div className="mb-3">
