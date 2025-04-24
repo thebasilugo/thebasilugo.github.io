@@ -356,7 +356,7 @@ export default function Resume() {
 								persistence.
 							</li>
 						</ul>
-					</div>
+					</div> */}
 
 					{/* Project 3 */}
 					<div className="mb-3">
