@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Basil's Blog | TheBasilUgo</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script
+			src="https://kit.fontawesome.com/3a5a5e5a3e.js"
+			crossorigin="anonymous"
+		></script>
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
+		/>
+		<script>
+			tailwind.config = {
+				darkMode: "class",
+				theme: {
+					extend: {
+						colors: {
+							primary: {
+								50: "#f0f9ff",
+								100: "#e0f2fe",
+								200: "#bae6fd",
+								300: "#7dd3fc",
+								400: "#38bdf8",
+								500: "#0ea5e9",
+								600: "#0284c7",
+								700: "#0369a1",
+								800: "#075985",
+								900: "#0c4a6e",
+							},
+							dark: {
+								900: "#0a0a0a",
+								800: "#1a1a1a",
+								700: "#2a2a2a",
+							},
+						},
+						fontFamily: {
+							sans: ["Outfit", "ui-sans-serif", "system-ui"],
+						},
+					},
+				},
+			};
+		</script>
+		<style>
+			body {
+				font-family: "Outfit", sans-serif;
+				background-color: #fafafa;
+				transition: background-color 0.3s ease;
+			}
+
+			.dark body {
+				background-color: #0a0a0a;
+			}
+
+			.gradient-text {
+				background-clip: text;
+				-webkit-background-clip: text;
+				color: transparent;
+				background-image: linear-gradient(90deg, #3b82f6, #8b5cf6);
+			}
+
+			.post-card {
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+				border: 1px solid #e5e7eb;
+			}
+
+			.dark .post-card {
+				border-color: #2a2a2a;
+			}
+
+			.post-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+			}
+
+			.dark .post-card:hover {
+				box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+			}
+
+			#newPostModal {
+				transition: opacity 0.3s ease, transform 0.3s ease;
+			}
+
+			.modal-open {
+				opacity: 1;
+				transform: translateY(0);
+			}
+
+			.modal-closed {
+				opacity: 0;
+				transform: translateY(-20px);
+				pointer-events: none;
+			}
+
+			.nav-link {
+				position: relative;
+			}
+
+			.nav-link:after {
+				content: "";
+				position: absolute;
+				width: 0;
+				height: 2px;
+				bottom: 0;
+				left: 0;
+				background-color: #3b82f6;
+				transition: width 0.3s ease;
+			}
+
+			.nav-link:hover:after {
+				width: 100%;
+			}
+
+			.dark .nav-link:after {
+				background-color: #8b5cf6;
+			}
+
+			.btn-primary {
+				background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+				color: white;
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+			}
+
+			.btn-primary:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+			}
+
+			.dark .btn-primary:hover {
+				box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+			}
+		</style>
+	</head>
+	<body
+		class="bg-[#fafafa] text-gray-800 dark:bg-dark-900 dark:text-gray-100 min-h-screen"
+	>
+		<!-- Navigation -->
+		<nav
+			class="bg-white dark:bg-dark-800 border-b border-gray-200 dark:border-dark-700 sticky top-0 z-50"
+		>
+			<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="flex justify-between h-16">
+					<div class="flex items-center">
+						<a
+							href="https://thebasilugo.vercel.app/"
+							class="flex items-center space-x-2"
+						>
+							<span class="text-xl font-bold gradient-text">TheBasilUgo</span>
+						</a>
+					</div>
+					<div class="flex items-center space-x-6">
+						<a
+							href="https://thebasilugo.vercel.app/"
+							class="nav-link px-1 py-2 text-sm font-medium"
+							>Portfolio</a
+						>
+						<a
+							href="#"
+							class="nav-link px-1 py-2 text-sm font-medium text-primary-600 dark:text-primary-400"
+							>Blog</a
+						>
+						<button
+							id="themeToggle"
+							class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-dark-700 transition"
+						>
+							<i class="fas fa-moon dark:hidden"></i>
+							<i class="fas fa-sun hidden dark:block"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<!-- Hero Section -->
+		<header
+			class="bg-gradient-to-r from-primary-500 to-primary-700 dark:from-dark-800 dark:to-dark-700 text-white py-20"
+		>
+			<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+				<h1 class="text-4xl md:text-5xl font-bold mb-4">Basil's Tech Blog</h1>
+				<p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+					Sharing insights, tutorials, and thoughts on web development, design,
+					and technology.
+				</p>
+				<button
+					id="newPostBtn"
+					class="btn-primary px-6 py-3 rounded-full font-medium"
+				>
+					<i class="fas fa-plus mr-2"></i> New Post
+				</button>
+			</div>
+		</header>
+
+		<!-- Main Content -->
+		<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+			<!-- Featured Posts -->
+			<section class="mb-16">
+				<h2 class="text-2xl font-bold mb-6 flex items-center">
+					<i class="fas fa-star mr-2 text-yellow-500"></i> Featured Posts
+				</h2>
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+					<!-- Featured Post 1 -->
+					<article
+						class="bg-white dark:bg-dark-800 rounded-xl overflow-hidden post-card"
+					>
+						<img
+							src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+							alt="Web Development"
+							class="w-full h-48 object-cover"
+						/>
+						<div class="p-6">
+							<div class="flex items-center mb-2">
+								<span
+									class="bg-primary-100 text-primary-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300"
+									>Development</span
+								>
+								<span class="text-gray-500 dark:text-gray-400 text-sm ml-auto"
+									><i class="far fa-clock mr-1"></i> 5 min read</span
+								>
+							</div>
+							<h3 class="text-xl font-bold mb-2">
+								Building Modern Web Applications with Next.js
+							</h3>
+							<p class="text-gray-600 dark:text-gray-300 mb-4">
+								Learn how to leverage Next.js for server-side rendering, static
+								generation, and API routes to build performant web applications.
+							</p>
+							<div class="flex items-center justify-between">
+								<div class="flex items-center">
+									<img
+										src="https://thebasilugo.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fme.2d9f1c3a.jpg&w=3840&q=75"
+										alt="Basil"
+										class="w-8 h-8 rounded-full mr-2"
+									/>
+									<span class="text-sm font-medium">Basil Ugo</span>
+								</div>
+								<a
+									href="#"
+									class="text-primary-600 dark:text-primary-400 hover:underline text-sm font-medium"
+									>Read more</a
+								>
+							</div>
+						</div>
+					</article>
+
+					<!-- Featured Post 2 -->
+					<article
+						class="bg-white dark:bg-dark-800 rounded-xl overflow-hidden post-card"
+					>
+						<img
+							src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80"
+							alt="UI/UX Design"
+							class="w-full h-48 object-cover"
+						/>
+						<div class="p-6">
+							<div class="flex items-center mb-2">
+								<span
+									class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300"
+									>Design</span
+								>
+								<span class="text-gray-500 dark:text-gray-400 text-sm ml-auto"
+									><i class="far fa-clock mr-1"></i> 7 min read</span
+								>
+							</div>
+							<h3 class="text-xl font-bold mb-2">
+								The Principles of Dark Mode Design
+							</h3>
+							<p class="text-gray-600 dark:text-gray-300 mb-4">
+								Explore best practices for implementing dark mode in your
+								applications while maintaining accessibility and visual
+								hierarchy.
+							</p>
+							<div class="flex items-center justify-between">
+								<div class="flex items-center">
+									<img
+										src="https://thebasilugo.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fme.2d9f1c3a.jpg&w=3840&q=75"
+										alt="Basil"
+										class="w-8 h-8 rounded-full mr-2"
+									/>
+									<span class="text-sm font-medium">Basil Ugo</span>
+								</div>
+								<a
+									href="#"
+									class="text-primary-600 dark:text-primary-400 hover:underline text-sm font-medium"
+									>Read more</a
+								>
+							</div>
+						</div>
+					</article>
+
+					<!-- Featured Post 3 -->
+					<article
+						class="bg-white dark:bg-dark-800 rounded-xl overflow-hidden post-card"
+					>
+						<img
+							src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+							alt="JavaScript"
+							class="w-full h-48 object-cover"
+						/>
+						<div class="p-6">
+							<div class="flex items-center mb-2">
+								<span
+									class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-purple-900 dark:text-purple-300"
+									>JavaScript</span
+								>
+								<span class="text-gray-500 dark:text-gray-400 text-sm ml-auto"
+									><i class="far fa-clock mr-1"></i> 10 min read</span
+								>
+							</div>
+							<h3 class="text-xl font-bold mb-2">
+								Mastering Async/Await in JavaScript
+							</h3>
+							<p class="text-gray-600 dark:text-gray-300 mb-4">
+								A deep dive into asynchronous JavaScript, covering promises,
+								async/await patterns, and error handling strategies.
+							</p>
+							<div class="flex items-center justify-between">
+								<div class="flex items-center">
+									<img
+										src="https://thebasilugo.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fme.2d9f1c3a.jpg&w=3840&q=75"
+										alt="Basil"
+										class="w-8 h-8 rounded-full mr-2"
+									/>
+									<span class="text-sm font-medium">Basil Ugo</span>
+								</div>
+								<a
+									href="#"
+									class="text-primary-600 dark:text-primary-400 hover:underline text-sm font-medium"
+									>Read more</a
+								>
+							</div>
+						</div>
+					</article>
+				</div>
+			</section>
+
+			<!-- All Posts -->
+			<section>
+				<div class="flex justify-between items-center mb-6">
+					<h2 class="text-2xl font-bold flex items-center">
+						<i class="fas fa-newspaper mr-2 text-primary-500"></i> Latest Posts
+					</h2>
+					<div class="relative">
+						<select
+							class="bg-white dark:bg-dark-800 border border-gray-300 dark:border-dark-700 rounded-md py-2 pl-3 pr-8 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 appearance-none"
+						>
+							<option>All Categories</option>
+							<option>Development</option>
+							<option>Design</option>
+							<option>JavaScript</option>
+							<option>CSS</option>
+						</select>
+						<div
+							class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:text-gray-300"
+						>
+							<i class="fas fa-chevron-down text-xs"></i>
+						</div>
+					</div>
+				</div>
+
+				<div class="space-y-8" id="postsContainer">
+					<!-- Post 1 -->
+					<article
+						class="bg-white dark:bg-dark-800 rounded-xl overflow-hidden post-card"
+					>
+						<div class="md:flex">
+							<div class="md:flex-shrink-0 md:w-48">
+								<img
+									class="h-full w-full object-cover"
+									src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+									alt="Tailwind CSS"
+								/>
+							</div>
+							<div class="p-6">
+								<div class="flex items-center mb-2">
+									<span
+										class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300"
+										>CSS</span
+									>
+									<span class="text-gray-500 dark:text-gray-400 text-sm ml-4"
+										><i class="far fa-calendar-alt mr-1"></i> May 15, 2023</span
+									>
+									<span class="text-gray-500 dark:text-gray-400 text-sm ml-auto"
+										><i class="far fa-clock mr-1"></i> 8 min read</span
+									>
+								</div>
+								<h3 class="text-xl font-bold mb-2">
+									Advanced Tailwind CSS Techniques
+								</h3>
+								<p class="text-gray-600 dark:text-gray-300 mb-4">
+									Discover how to leverage Tailwind CSS's utility-first approach
+									to create complex layouts and responsive designs with minimal
+									custom CSS.
+								</p>
+								<div class="flex items-center justify-between">
+									<div class="flex items-center">
+										<img
+											src="https://thebasilugo.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fme.2d9f1c3a.jpg&w=3840&q=75"
+											alt="Basil"
+											class="w-8 h-8 rounded-full mr-2"
+										/>
+										<span class="text-sm font-medium">Basil Ugo</span>
+									</div>
+									<a
+										href="#"
+										class="text-primary-600 dark:text-primary-400 hover:underline text-sm font-medium"
+										>Read more</a
+									>
+								</div>
+							</div>
+						</div>
+					</article>
+
+					<!-- Post 2 -->
+					<article
+						class="bg-white dark:bg-dark-800 rounded-xl overflow-hidden post-card"
+					>
+						<div class="md:flex">
+							<div class="md:flex-shrink-0 md:w-48">
+								<img
+									class="h-full w-full object-cover"
+									src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+									alt="React"
+								/>
+							</div>
+							<div class="p-6">
+								<div class="flex items-center mb-2">
+									<span
+										class="bg-cyan-100 text-cyan-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-cyan-900 dark:text-cyan-300"
+										>React</span
+									>
+									<span class="text-gray-500 dark:text-gray-400 text-sm ml-4"
+										><i class="far fa-calendar-alt mr-1"></i> April 28,
+										2023</span
+									>
+									<span class="text-gray-500 dark:text-gray-400 text-sm ml-auto"
+										><i class="far fa-clock mr-1"></i> 12 min read</span
+									>
+								</div>
+								<h3 class="text-xl font-bold mb-2">
+									React Hooks: Beyond the Basics
+								</h3>
+								<p class="text-gray-600 dark:text-gray-300 mb-4">
+									Explore advanced patterns with React Hooks including custom
+									hooks, context optimization, and performance considerations.
+								</p>
+								<div class="flex items-center justify-between">
+									<div class="flex items-center">
+										<img
+											src="https://thebasilugo.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fme.2d9f1c3a.jpg&w=3840&q=75"
+											alt="Basil"
+											class="w-8 h-8 rounded-full mr-2"
+										/>
+										<span class="text-sm font-medium">Basil Ugo</span>
+									</div>
+									<a
+										href="#"
+										class="text-primary-600 dark:text-primary-400 hover:underline text-sm font-medium"
+										>Read more</a
+									>
+								</div>
+							</div>
+						</div>
+					</article>
+
+					<!-- Post 3 -->
+					<article
+						class="bg-white dark:bg-dark-800 rounded-xl overflow-hidden post-card"
+					>
+						<div class="md:flex">
+							<div class="md:flex-shrink-0 md:w-48">
+								<img
+									class="h-full w-full object-cover"
+									src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+									alt="Data Visualization"
+								/>
+							</div>
+							<div class="p-6">
+								<div class="flex items-center mb-2">
+									<span
+										class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300"
+										>Data</span
+									>
+									<span class="text-gray-500 dark:text-gray-400 text-sm ml-4"
+										><i class="far fa-calendar-alt mr-1"></i> March 10,
+										2023</span
+									>
+									<span class="text-gray-500 dark:text-gray-400 text-sm ml-auto"
+										><i class="far fa-clock mr-1"></i> 15 min read</span
+									>
+								</div>
+								<h3 class="text-xl font-bold mb-2">
+									Creating Interactive Data Visualizations with D3.js
+								</h3>
+								<p class="text-gray-600 dark:text-gray-300 mb-4">
+									Learn how to build dynamic, responsive data visualizations
+									using D3.js that tell compelling stories with your data.
+								</p>
+								<div class="flex items-center justify-between">
+									<div class="flex items-center">
+										<img
+											src="https://thebasilugo.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fme.2d9f1c3a.jpg&w=3840&q=75"
+											alt="Basil"
+											class="w-8 h-8 rounded-full mr-2"
+										/>
+										<span class="text-sm font-medium">Basil Ugo</span>
+									</div>
+									<a
+										href="#"
+										class="text-primary-600 dark:text-primary-400 hover:underline text-sm font-medium"
+										>Read more</a
+									>
+								</div>
+							</div>
+						</div>
+					</article>
+				</div>
+
+				<div class="mt-10 flex justify-center">
+					<button class="btn-primary px-6 py-2 rounded-full font-medium">
+						Load More Posts
+					</button>
+				</div>
+			</section>
+		</main>
+
+		<!-- Newsletter -->
+		<section class="bg-gray-100 dark:bg-dark-800 py-16">
+			<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+				<div class="bg-white dark:bg-dark-700 rounded-xl shadow-lg p-8 md:p-10">
+					<i
+						class="fas fa-envelope-open-text text-4xl text-primary-600 dark:text-primary-400 mb-4"
+					></i>
+					<h2 class="text-2xl font-bold mb-2">Subscribe to my newsletter</h2>
+					<p class="text-gray-600 dark:text-gray-300 mb-6">
+						Get the latest posts delivered right to your inbox. No spam, ever.
+					</p>
+					<form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+						<input
+							type="email"
+							placeholder="Your email address"
+							class="flex-grow px-4 py-2 rounded-lg border border-gray-300 dark:border-dark-600 dark:bg-dark-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+						/>
+						<button
+							type="submit"
+							class="btn-primary px-6 py-2 rounded-lg font-medium whitespace-nowrap"
+						>
+							Subscribe
+						</button>
+					</form>
+				</div>
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<footer class="bg-dark-800 text-gray-300 py-12">
+			<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+					<div>
+						<h3 class="text-white text-lg font-semibold mb-4">Basil's Blog</h3>
+						<p class="mb-4">
+							Sharing knowledge and insights about web development, design, and
+							technology.
+						</p>
+						<div class="flex space-x-4">
+							<a href="#" class="text-gray-400 hover:text-white transition">
+								<i class="fab fa-twitter"></i>
+							</a>
+							<a href="#" class="text-gray-400 hover:text-white transition">
+								<i class="fab fa-github"></i>
+							</a>
+							<a href="#" class="text-gray-400 hover:text-white transition">
+								<i class="fab fa-linkedin"></i>
+							</a>
+							<a href="#" class="text-gray-400 hover:text-white transition">
+								<i class="fab fa-dev"></i>
+							</a>
+						</div>
+					</div>
+					<div>
+						<h3 class="text-white text-lg font-semibold mb-4">Quick Links</h3>
+						<ul class="space-y-2">
+							<li>
+								<a
+									href="https://thebasilugo.vercel.app/"
+									class="hover:text-white transition"
+									>Portfolio</a
+								>
+							</li>
+							<li><a href="#" class="hover:text-white transition">About</a></li>
+							<li>
+								<a href="#" class="hover:text-white transition">Contact</a>
+							</li>
+							<li>
+								<a href="#" class="hover:text-white transition"
+									>Privacy Policy</a
+								>
+							</li>
+						</ul>
+					</div>
+					<div>
+						<h3 class="text-white text-lg font-semibold mb-4">Categories</h3>
+						<ul class="space-y-2">
+							<li>
+								<a href="#" class="hover:text-white transition"
+									>Web Development</a
+								>
+							</li>
+							<li>
+								<a href="#" class="hover:text-white transition">UI/UX Design</a>
+							</li>
+							<li>
+								<a href="#" class="hover:text-white transition">JavaScript</a>
+							</li>
+							<li><a href="#" class="hover:text-white transition">CSS</a></li>
+							<li><a href="#" class="hover:text-white transition">React</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="border-t border-dark-700 mt-8 pt-8 text-center">
+					<p>&copy; 2023 Basil Ugo. All rights reserved.</p>
+				</div>
+			</div>
+		</footer>
+
+		<!-- New Post Modal -->
+		<div
+			id="newPostModal"
+			class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 modal-closed"
+		>
+			<div
+				class="bg-white dark:bg-dark-800 rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+			>
+				<div class="p-6">
+					<div class="flex justify-between items-center mb-4">
+						<h3 class="text-xl font-bold">Create New Post</h3>
+						<button
+							id="closeModalBtn"
+							class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+						>
+							<i class="fas fa-times"></i>
+						</button>
+					</div>
+
+					<form id="newPostForm" class="space-y-4">
+						<div>
+							<label for="postTitle" class="block text-sm font-medium mb-1"
+								>Title</label
+							>
+							<input
+								type="text"
+								id="postTitle"
+								class="w-full px-3 py-2 border border-gray-300 dark:border-dark-600 dark:bg-dark-700 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+								required
+							/>
+						</div>
+
+						<div>
+							<label for="postCategory" class="block text-sm font-medium mb-1"
+								>Category</label
+							>
+							<select
+								id="postCategory"
+								class="w-full px-3 py-2 border border-gray-300 dark:border-dark-600 dark:bg-dark-700 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+							>
+								<option value="development">Development</option>
+								<option value="design">Design</option>
+								<option value="javascript">JavaScript</option>
+								<option value="css">CSS</option>
+								<option value="react">React</option>
+							</select>
+						</div>
+
+						<div>
+							<label for="postImage" class="block text-sm font-medium mb-1"
+								>Featured Image URL</label
+							>
+							<input
+								type="url"
+								id="postImage"
+								class="w-full px-3 py-2 border border-gray-300 dark:border-dark-600 dark:bg-dark-700 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+							/>
+						</div>
+
+						<div>
+							<label for="postContent" class="block text-sm font-medium mb-1"
+								>Content</label
+							>
+							<textarea
+								id="postContent"
+								rows="8"
+								class="w-full px-3 py-2 border border-gray-300 dark:border-dark-600 dark:bg-dark-700 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+								required
+							></textarea>
+						</div>
+
+						<div class="flex justify-end space-x-3 pt-2">
+							<button
+								type="button"
+								id="cancelPostBtn"
+								class="px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-dark-700 transition"
+							>
+								Cancel
+							</button>
+							<button
+								type="submit"
+								class="btn-primary px-4 py-2 rounded-md transition"
+							>
+								Publish Post
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			// Theme toggle functionality
+			const themeToggle = document.getElementById("themeToggle");
+			const html = document.documentElement;
+
+			// Check for saved user preference or use system preference
+			if (
+				localStorage.getItem("theme") === "dark" ||
+				(!localStorage.getItem("theme") &&
+					window.matchMedia("(prefers-color-scheme: dark)").matches)
+			) {
+				html.classList.add("dark");
+			} else {
+				html.classList.remove("dark");
+			}
+
+			themeToggle.addEventListener("click", () => {
+				html.classList.toggle("dark");
+				localStorage.setItem(
+					"theme",
+					html.classList.contains("dark") ? "dark" : "light"
+				);
+			});
+
+			// Modal functionality
+			const newPostBtn = document.getElementById("newPostBtn");
+			const closeModalBtn = document.getElementById("closeModalBtn");
+			const cancelPostBtn = document.getElementById("cancelPostBtn");
+			const newPostModal = document.getElementById("newPostModal");
+			const newPostForm = document.getElementById("newPostForm");
+			const postsContainer = document.getElementById("postsContainer");
+
+			function toggleModal() {
+				newPostModal.classList.toggle("modal-open");
+				newPostModal.classList.toggle("modal-closed");
+			}
+
+			newPostBtn.addEventListener("click", toggleModal);
+			closeModalBtn.addEventListener("click", toggleModal);
+			cancelPostBtn.addEventListener("click", toggleModal);
+
+			// Close modal when clicking outside
+			newPostModal.addEventListener("click", (e) => {
+				if (e.target === newPostModal) {
+					toggleModal();
+				}
+			});
+
+			// Form submission
+			newPostForm.addEventListener("submit", (e) => {
+				e.preventDefault();
+
+				const title = document.getElementById("postTitle").value;
+				const category = document.getElementById("postCategory").value;
+				const image =
+					document.getElementById("postImage").value ||
+					"https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80";
+				const content = document.getElementById("postContent").value;
+
+				// Create new post element
+				const newPost = document.createElement("article");
+				newPost.className =
+					"bg-white dark:bg-dark-800 rounded-xl overflow-hidden post-card";
+				newPost.innerHTML = `
+                <div class="md:flex">
+                    <div class="md:flex-shrink-0 md:w-48">
+                        <img class="h-full w-full object-cover" src="${image}" alt="${title}">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-2">
+                            <span class="${getCategoryClass(
+															category
+														)}">${formatCategory(category)}</span>
+                            <span class="text-gray-500 dark:text-gray-400 text-sm ml-4"><i class="far fa-calendar-alt mr-1"></i> ${new Date().toLocaleDateString(
+															"en-US",
+															{
+																month: "short",
+																day: "numeric",
+																year: "numeric",
+															}
+														)}</span>
+                            <span class="text-gray-500 dark:text-gray-400 text-sm ml-auto"><i class="far fa-clock mr-1"></i> ${Math.max(
+															1,
+															Math.floor(content.length / 1000)
+														)} min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">${title}</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">${content.substring(
+													0,
+													150
+												)}...</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <img src="https://thebasilugo.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fme.2d9f1c3a.jpg&w=3840&q=75" alt="Basil" class="w-8 h-8 rounded-full mr-2">
+                                <span class="text-sm font-medium">Basil Ugo</span>
+                            </div>
+                            <a href="#" class="text-primary-600 dark:text-primary-400 hover:underline text-sm font-medium">Read more</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+				// Prepend new post to container
+				postsContainer.prepend(newPost);
+
+				// Reset form and close modal
+				newPostForm.reset();
+				toggleModal();
+
+				// Scroll to new post
+				setTimeout(() => {
+					newPost.scrollIntoView({ behavior: "smooth", block: "nearest" });
+					newPost.classList.add("animate-pulse");
+					setTimeout(() => newPost.classList.remove("animate-pulse"), 2000);
+				}, 100);
+			});
+
+			function getCategoryClass(category) {
+				const classes = {
+					development:
+						"bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-300",
+					design:
+						"bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300",
+					javascript:
+						"bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300",
+					css: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300",
+					react:
+						"bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-300",
+				};
+				return `text-xs font-medium px-2.5 py-0.5 rounded ${
+					classes[category] || classes.development
+				}`;
+			}
+
+			function formatCategory(category) {
+				return category.charAt(0).toUpperCase() + category.slice(1);
+			}
+		</script>
+	</body>
+</html>
