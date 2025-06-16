@@ -29,6 +29,61 @@ const Projects = () => {
 		//   featured: true,
 		// },
 		{
+			name: "SaveStreak",
+			description:
+				"A gamified savings tracker that turns your daily saving habits green when you save and red when you don’t. Supports offline usage and syncs to localStorage when back online.",
+			technologies: ["Next.js", "React", "TailwindCSS", "localStorage"],
+			category: "Next.js",
+			date: "Jun 2025",
+			sourceCode: "",
+			preview: "https://savestreak.vercel.app/",
+			featured: true,
+		},
+		{
+			name: "GlucoseTracker",
+			description:
+				"A personal blood glucose logging app that visualizes trends over time. Features include manual entry, chart summaries, and streak tracking to help maintain healthy levels.",
+			technologies: ["Next.js", "React", "TailwindCSS", "Chart.js"],
+			category: "Next.js",
+			date: "Apr 2025",
+			sourceCode: "",
+			preview: "https://glucosetrackerbyhim.vercel.app/",
+			featured: true,
+		},
+		{
+			name: "AutoCV",
+			description:
+				"A minimalist, professional resume builder that generates clean, tailored CVs for any role or industry. Includes template selection, live preview, and easy export to PDF.",
+			technologies: ["Next.js", "React", "TailwindCSS"],
+			category: "Next.js",
+			date: "May 2025",
+			sourceCode: "",
+			preview: "https://autocvbyhim.vercel.app/",
+			featured: true,
+		},
+		// {
+		// 	name: "TCSS Builder",
+		// 	description:
+		// 		"An AI‑powered TailwindCSS builder with live preview, responsive screen‑size toggles (desktop/tablet/mobile), a shareable link button, and a minimizable preview pane for streamlined workflow.",
+		// 	technologies: ["Next.js", "React", "TypeScript", "TailwindCSS"],
+		// 	category: "TailwindCSS",
+		// 	date: "Feb 2025",
+		// 	sourceCode: "",
+		// 	preview: "https://preview--tcss-builder.lovable.app/",
+		// 	featured: true,
+		// },
+		{
+			name: "KicksConfetti",
+			description:
+				"A vibrant e-commerce platform specializing in sneakers and related apparel. Integrated secure payment gateways, advanced product filtering, and a user-friendly interface to optimize the shopping experience.",
+			technologies: ["Next.js", "TypeScript", "TailwindCSS"],
+			category: "Next.js",
+			date: "Pending",
+			sourceCode: "https://github.com/thebasilugo/kicks-confetti",
+			preview: "https://thebasilugo.github.io/kicksconfetti",
+			// featured: true,
+		},
+		{
 			name: "CheckpointRide",
 			description:
 				"A route planning and logistics simulator with interactive mapping and scheduling tools. Leveraged Firebase for real-time data updates and user authentication, enhancing operational efficiency.",
@@ -39,28 +94,50 @@ const Projects = () => {
 			preview: "https://thebasilugo.github.io/checkpointride",
 			featured: true,
 		},
+		// {
+		// 	name: "TaskFlow",
+		// 	description:
+		// 		"A dynamic project management tool featuring drag-and-drop task organization, real-time updates, and collaborative features. Emphasized responsive design for accessibility across devices.",
+		// 	technologies: ["React", "TypeScript", "TailwindCSS"],
+		// 	category: "React",
+		// 	date: "May 2024",
+		// 	sourceCode: "https://github.com/thebasilugo/task-flow",
+		// 	preview: "https://thebasilugo.github.io/taskflow",
+		// featured: true,
+		// },
+
 		{
-			name: "KicksConfetti",
+			name: "Auto‑Architekt",
 			description:
-				"A vibrant e-commerce platform specializing in sneakers and related apparel. Integrated secure payment gateways, advanced product filtering, and a user-friendly interface to optimize the shopping experience.",
-			technologies: ["Next.js", "TypeScript", "TailwindCSS"],
+				"An architectural concept generator that lets users input parameters and instantly creates and visualizes conceptual floor plans and 3D massing studies.",
+			technologies: ["Next.js", "React", "TailwindCSS", "Three.js"],
 			category: "Next.js",
-			date: "Pending",
-			sourceCode: "https://github.com/thebasilugo/kicks-confetti",
-			preview: "https://thebasilugo.github.io/kicksconfetti",
+			date: "Mar 2025",
+			sourceCode: "",
+			preview: "https://auto-architekt.vercel.app/",
 			featured: true,
 		},
+
 		{
-			name: "TaskFlow",
+			name: "Life Sync",
 			description:
-				"A dynamic project management tool featuring drag-and-drop task organization, real-time updates, and collaborative features. Emphasized responsive design for accessibility across devices.",
-			technologies: ["React", "TypeScript", "TailwindCSS"],
-			category: "React",
-			date: "May 2024",
-			sourceCode: "https://github.com/thebasilugo/task-flow",
-			preview: "https://thebasilugo.github.io/taskflow",
-			featured: true,
+				"An integrated life planner and synchronization hub that lets you manage tasks, habits, and events across devices with reminders and calendar sync.",
+			technologies: ["Next.js", "React", "TailwindCSS", "Firebase"],
+			category: "Next.js",
+			date: "Jun 2025",
+			sourceCode: "",
+			preview: "https://life-sync-u9.vercel.app/",
 		},
+		// {
+		//   name: "E-commerce App",
+		//   description:
+		//     "An online platform for buying and selling products with features like user authentication, product management, and payment integration.",
+		//   technologies: ["Next.js", "React", "TailwindCSS", "Firebase"],
+		//   category: "Next.js",
+		//   date: "Nov 2022",
+		//   sourceCode: "https://github.com/thebasilugo/ecommerce-app",
+		//   preview: "https://ecommerce-app.vercel.app",
+		// },
 		// {
 		//   name: "E-commerce App",
 		//   description:
