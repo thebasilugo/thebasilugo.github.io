@@ -2,11 +2,11 @@
 
 import type React from "react"
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import HamburgerNav from "./HamburgerNav";
-import { Moon, Sun } from "lucide-react";
-import { useOnlineStatus } from "@/app/hooks/use-online-status";
+import { useState, useEffect } from "react"
+import Link from "next/link"
+import HamburgerNav from "./HamburgerNav"
+import { Moon, Sun } from "lucide-react"
+import { useOnlineStatus } from "@/app/hooks/use-online-status"
 
 export default function Navbar() {
 	const [isOpen, setIsOpen] = useState(false);
