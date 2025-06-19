@@ -9,10 +9,10 @@ import { Moon, Sun } from "lucide-react"
 import { useOnlineStatus } from "@/app/hooks/use-online-status"
 
 export default function Navbar() {
-	const [isOpen, setIsOpen] = useState(false);
-	const [theme, setTheme] = useState<"light" | "dark">("light");
-	const [scrolled, setScrolled] = useState(false);
-	const isOnline = useOnlineStatus();
+  const [isOpen, setIsOpen] = useState(false)
+  const [theme, setTheme] = useState<"light" | "dark">("light")
+  const [scrolled, setScrolled] = useState(false)
+  const isOnline = useOnlineStatus()
 
 	useEffect(() => {
 		const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
