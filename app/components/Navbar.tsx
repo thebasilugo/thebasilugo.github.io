@@ -26,17 +26,17 @@ export default function Navbar() {
       document.documentElement.classList.add("dark")
     }
 
-		const handleScroll = () => {
-			if (window.scrollY > 10) {
-				setScrolled(true);
-			} else {
-				setScrolled(false);
-			}
-		};
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setScrolled(true)
+      } else {
+        setScrolled(false)
+      }
+    }
 
-		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, []);
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
 	const toggleMenu = () => {
 		setIsOpen((prev) => !prev);
