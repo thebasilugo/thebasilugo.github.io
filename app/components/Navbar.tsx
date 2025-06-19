@@ -14,11 +14,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const isOnline = useOnlineStatus()
 
-	useEffect(() => {
-		const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
-		const prefersDark = window.matchMedia(
-			"(prefers-color-scheme: dark)"
-		).matches;
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
 
 		if (savedTheme) {
 			setTheme(savedTheme);
