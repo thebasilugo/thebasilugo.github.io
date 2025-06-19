@@ -38,9 +38,9 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-	const toggleMenu = () => {
-		setIsOpen((prev) => !prev);
-	};
+  const toggleMenu = () => {
+    setIsOpen((prev) => !prev)
+  }
 
 	const toggleTheme = () => {
 		const newTheme = theme === "light" ? "dark" : "light";
