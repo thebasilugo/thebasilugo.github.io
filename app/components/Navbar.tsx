@@ -165,9 +165,9 @@ function MobileNavLink({
   onClick,
   children,
 }: {
-	href: string;
-	onClick: () => void;
-	children: React.ReactNode;
+  href: string
+  onClick: () => void
+  children: React.ReactNode
 }) {
 	return (
 		<Link
