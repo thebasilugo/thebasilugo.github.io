@@ -169,13 +169,13 @@ function MobileNavLink({
   onClick: () => void
   children: React.ReactNode
 }) {
-	return (
-		<Link
-			href={href}
-			onClick={onClick}
-			className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-colors"
-		>
-			{children}
-		</Link>
-	);
+  return (
+    <Link
+      href={href}
+      onClick={onClick}
+      className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-colors"
+    >
+      {children}
+    </Link>
+  )
 }
