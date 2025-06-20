@@ -161,9 +161,9 @@ export default function Navbar() {
 }
 
 function MobileNavLink({
-	href,
-	onClick,
-	children,
+  href,
+  onClick,
+  children,
 }: {
 	href: string;
 	onClick: () => void;
