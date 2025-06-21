@@ -15,8 +15,3 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
 export const db = getFirestore(app)
-
-// Helper function to check if Firebase is properly configured
-export const isFirebaseConfigured = () => {
-  return process.env.NEXT_PUBLIC_FIREBASE_API_KEY && process.env.NEXT_PUBLIC_FIREBASE_API_KEY !== "demo-key-for-preview"
-}
