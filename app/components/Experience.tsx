@@ -97,27 +97,23 @@ export default function Experience() {
 				Experience
 			</h2>
 
-			<div className="max-w-5xl mx-auto">
-				{/* Timeline Indicator */}
-				<div className="relative mb-8">
-					<div className="h-1 bg-slate-300 dark:bg-slate-700 rounded-full">
-						<div
-							className="h-1 bg-slate-800 dark:bg-slate-400 rounded-full transition-all duration-300"
-							style={{
-								width: `${(activeTab / (experiences.length - 1)) * 100}%`,
-							}}
-							aria-hidden="true"
-						></div>
-					</div>
-					<div className="flex justify-between mt-2">
-						<span className="text-sm text-slate-600 dark:text-slate-400">
-							2022
-						</span>
-						<span className="text-sm text-slate-600 dark:text-slate-400">
-							Present
-						</span>
-					</div>
-				</div>
+      <div className="max-w-5xl mx-auto">
+        {/* Timeline Indicator */}
+        <div className="relative mb-8">
+          <div className="h-1 bg-slate-300 dark:bg-slate-700 rounded-full">
+            <div
+              className="h-1 bg-slate-800 dark:bg-slate-400 rounded-full transition-all duration-300"
+              style={{
+                width: `${((experiences.length - 1 - activeTab) / (experiences.length - 1)) * 100}%`,
+              }}
+              aria-hidden="true"
+            ></div>
+          </div>
+          <div className="flex justify-between mt-2">
+            <span className="text-sm text-slate-600 dark:text-slate-400">2022</span>
+            <span className="text-sm text-slate-600 dark:text-slate-400">Present</span>
+          </div>
+        </div>
 
 				{/* Tabs */}
 				<div
