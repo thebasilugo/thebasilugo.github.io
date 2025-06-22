@@ -89,84 +89,39 @@ export default function CallToAction() {
 
   const isFormValid = formData.name.trim() && formData.email.trim() && formData.message.trim().length >= 10
 
-	return (
-		<section
-			id="contact"
-			className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-900 text-white"
-		>
-			<div className="max-w-6xl mx-auto">
-				<h2 className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-center">
-					Let's Connect
-				</h2>
+  return (
+    <section
+      id="contact"
+      className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white rounded-2xl text-center relative overflow-hidden"
+    >
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 transform rotate-12 scale-150"></div>
+      </div>
 
-				<div className="grid md:grid-cols-1 gap-2">
-					{/* Contact Info */}
-					<div>
-						<h3 className="text-2xl font-semibold mb-6">Get in Touch</h3>
-						<p className="text-gray-300 mb-8">
-							I'm always open to discussing new projects, creative ideas, or
-							opportunities to be part of your vision. Feel free to reach out
-							through any of the following channels:
-						</p>
+      <div className="relative z-10">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+          Let's Create Something Amazing Together
+        </h2>
+        <p className="text-center text-lg sm:text-xl mb-8 text-gray-300 max-w-2xl mx-auto">
+          Ready to bring your ideas to life? I'm here to help you build exceptional web experiences. Let's start a
+          conversation!
+        </p>
 
-						<div className="space-y-4 grid md:grid-cols-3 gap-2">
-							<SocialLink
-								href="mailto:basilugo2@gmail.com"
-								icon={Mail}
-								label="basilugo2@gmail.com"
-								description="Email me directly"
-							/>
-							<SocialLink
-								href="https://www.linkedin.com/in/thebasilugo"
-								icon={Linkedin}
-								label="linkedin.com/in/thebasilugo"
-								description="Connect on LinkedIn"
-							/>
-							<SocialLink
-								href="https://github.com/thebasilugo"
-								icon={Github}
-								label="github.com/thebasilugo"
-								description="Check out my code"
-							/>
-							<SocialLink
-								href="https://twitter.com/thebasilugo"
-								icon={Twitter}
-								label="twitter.com/thebasilugo"
-								description="Follow me on Twitter"
-							/>
-							<SocialLink
-								href="https://www.instagram.com/thebasilugo"
-								icon={Instagram}
-								label="instagram.com/thebasilugo"
-								description="Follow me on Instagram"
-							/>
-						</div>
-					</div>
-
-					{/* Contact Form */}
-					{/* <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
-            <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
-            {!isOnline && (
-              <div className="mb-4 p-3 bg-yellow-800 bg-opacity-50 rounded-md text-yellow-200 text-sm">
-                <p>You're currently offline. Your message will be saved and sent when you're back online.</p>
-              </div>
-            )}
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
-                  Name
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Your name"
-                  className="w-full bg-gray-700 border border-gray-600 rounded py-2 px-3 outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-                  required
-                  aria-required="true"
-                />
-              </div>
+        <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-6 mb-12">
+          <div className="relative group">
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              placeholder="Your Name"
+              className="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl py-4 px-6 text-center outline-none hover:bg-white/15 focus:bg-white/15 focus:border-white/40 transition-all duration-300 placeholder-gray-400"
+              disabled={status === "loading"}
+              required
+            />
+            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+          </div>
 
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
