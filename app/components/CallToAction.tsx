@@ -1,24 +1,11 @@
 "use client"
 
-import type React from "react";
-import { useState, useEffect } from "react";
-// import { db, isFirebaseConfigured } from "@/app/lib/firebase-config"
-import { collection, addDoc } from "firebase/firestore";
-import {
-	Mail,
-	Linkedin,
-	Github,
-	Twitter,
-	Instagram,
-	Send,
-	Loader2,
-} from "lucide-react";
-import { useOnlineStatus } from "@/app/hooks/use-online-status";
-import {
-	queueContactForm,
-	getQueuedContactForms,
-	clearQueuedContactForms,
-} from "@/app/lib/offline-utils";
+import type React from "react"
+import { useState } from "react"
+import { db } from "../firebase"
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"
+import { CheckCircle, AlertCircle, Loader2, Send } from "lucide-react"
+import { GitHubIcon, LinkedInIcon, TwitterIcon, InstagramIcon, GmailIcon } from "./SocialIcons"
 
 export default function CallToAction() {
 	const [name, setName] = useState("");
