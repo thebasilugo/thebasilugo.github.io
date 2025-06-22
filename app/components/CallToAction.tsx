@@ -153,62 +153,96 @@ export default function CallToAction() {
             <div className="text-right text-xs text-gray-400 mt-2">{formData.message.length}/10 minimum</div>
           </div>
 
-              <button
-                type="submit"
-                className="w-full flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition-colors cursor-pointer focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 disabled:opacity-70 disabled:cursor-not-allowed"
-                disabled={loading || !name || !email || !message}
-                aria-busy={loading}
-              >
-                {loading ? (
-                  <>
-                    <Loader2 size={18} className="mr-2 animate-spin" aria-hidden="true" />
-                    <span>Sending...</span>
-                  </>
-                ) : (
-                  <>
-                    <Send size={18} className="mr-2" aria-hidden="true" />
-                    <span>Send Message</span>
-                  </>
-                )}
-              </button>
-            </form>
-          </div>*/}
-				</div>
-			</div>
+          <button
+            type="submit"
+            className={`w-full py-4 px-8 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-3 transform hover:scale-105 ${
+              status === "loading"
+                ? "bg-gray-600 cursor-not-allowed"
+                : status === "success"
+                  ? "bg-green-600 hover:bg-green-700 shadow-lg shadow-green-500/25"
+                  : isFormValid
+                    ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg shadow-blue-500/25"
+                    : "bg-gray-700 cursor-not-allowed opacity-50"
+            }`}
+            disabled={status === "loading" || !isFormValid}
+          >
+            {status === "loading" && <Loader2 size={20} className="animate-spin" />}
+            {status === "success" && <CheckCircle size={20} />}
+            {status === "idle" && <Send size={20} />}
+            {status === "loading" ? "Sending..." : status === "success" ? "Message Sent!" : "Send Message"}
+          </button>
+        </form>
 
-			{hasSubmitted && (
-				<div
-					className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
-					role="dialog"
-					aria-modal="true"
-					aria-labelledby="feedback-title"
-				>
-					<div className="bg-gray-800 text-white rounded-lg p-6 w-full max-w-md">
-						<h3
-							id="feedback-title"
-							className={`text-xl font-semibold mb-4 ${
-								success ? "text-green-500" : "text-red-500"
-							}`}
-						>
-							{success ? "Message Sent!" : "Message Failed"}
-						</h3>
-						<p className="mb-4">
-							{errorMessage ||
-								(success
-									? "Your message has been successfully recorded. I will get back to you soon!"
-									: "An error occurred while sending your message. Please try again.")}
-						</p>
-						<button
-							onClick={closeModal}
-							className="w-full border rounded py-2 px-4 bg-gray-700 hover:bg-gray-600 transition-colors"
-						>
-							Close
-						</button>
-					</div>
-				</div>
-			)}
-		</section>
-	);
+        {/* Status Messages */}
+        {status === "success" && (
+          <div className="mb-8 p-6 bg-green-500/20 backdrop-blur-sm border border-green-500/30 rounded-xl animate-fade-in">
+            <div className="flex items-center justify-center gap-3 text-green-200 mb-2">
+              <CheckCircle size={24} />
+              <span className="font-semibold text-lg">Message sent successfully!</span>
+            </div>
+            <p className="text-green-300">Thank you for reaching out. I'll get back to you within 24 hours!</p>
+          </div>
+        )}
+
+        {status === "error" && (
+          <div className="mb-8 p-6 bg-red-500/20 backdrop-blur-sm border border-red-500/30 rounded-xl animate-fade-in">
+            <div className="flex items-center justify-center gap-3 text-red-200 mb-2">
+              <AlertCircle size={24} />
+              <span className="font-semibold text-lg">Oops! Something went wrong</span>
+            </div>
+            <p className="text-red-300 mb-4">{errorMessage}</p>
+            <button onClick={closeModal} className="text-red-200 hover:text-white underline transition-colors">
+              Try again
+            </button>
+          </div>
+        )}
+
+        {/* Social Links */}
+        <div className="border-t border-white/20 pt-8">
+          <p className="text-gray-300 mb-6">Or connect with me on social media</p>
+          <div className="flex justify-center gap-6">
+            <SocialLink
+              href="mailto:basilugo2@gmail.com"
+              icon={<GmailIcon size={24} />}
+              label="Email"
+              hoverColor="hover:text-red-400"
+            />
+            <SocialLink
+              href="https://www.linkedin.com/in/thebasilugo"
+              icon={<LinkedInIcon size={24} />}
+              label="LinkedIn"
+              hoverColor="hover:text-blue-400"
+            />
+            <SocialLink
+              href="https://github.com/thebasilugo"
+              icon={<GitHubIcon size={24} />}
+              label="GitHub"
+              hoverColor="hover:text-gray-300"
+            />
+            <SocialLink
+              href="https://twitter.com/thebasilugo"
+              icon={<TwitterIcon size={24} />}
+              label="Twitter"
+              hoverColor="hover:text-blue-400"
+            />
+            <SocialLink
+              href="https://www.instagram.com/thebasilugo"
+              icon={<InstagramIcon size={24} />}
+              label="Instagram"
+              hoverColor="hover:text-pink-400"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+interface SocialLinkProps {
+  href: string
+  icon: React.ReactNode
+  label: string
+  hoverColor: string
 }
 
 function SocialLink({
