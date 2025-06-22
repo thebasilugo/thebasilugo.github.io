@@ -123,21 +123,19 @@ export default function CallToAction() {
             <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
           </div>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Your email"
-                  className="w-full bg-gray-700 border border-gray-600 rounded py-2 px-3 outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-                  required
-                  aria-required="true"
-                />
-              </div>
+          <div className="relative group">
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              placeholder="Your Email"
+              className="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl py-4 px-6 text-center outline-none hover:bg-white/15 focus:bg-white/15 focus:border-white/40 transition-all duration-300 placeholder-gray-400"
+              disabled={status === "loading"}
+              required
+            />
+            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+          </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
