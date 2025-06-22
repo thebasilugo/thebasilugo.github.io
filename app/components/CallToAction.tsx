@@ -137,21 +137,21 @@ export default function CallToAction() {
             <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
           </div>
 
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Your message"
-                  className="w-full bg-gray-700 border border-gray-600 rounded py-2 px-3 outline-none focus:ring-2 focus:ring-blue-500 transition-all min-h-[120px]"
-                  rows={4}
-                  required
-                  aria-required="true"
-                ></textarea>
-              </div>
+          <div className="relative group">
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleInputChange}
+              placeholder="Tell me about your project..."
+              className="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl py-4 px-6 text-center outline-none hover:bg-white/15 focus:bg-white/15 focus:border-white/40 transition-all duration-300 resize-none placeholder-gray-400"
+              rows={4}
+              disabled={status === "loading"}
+              required
+              minLength={10}
+            />
+            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+            <div className="text-right text-xs text-gray-400 mt-2">{formData.message.length}/10 minimum</div>
+          </div>
 
               <button
                 type="submit"
