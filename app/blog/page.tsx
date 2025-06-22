@@ -64,6 +64,87 @@ const blogPosts: BlogPost[] = [
     <p><em>This isn’t the final destination. It’s just the beginning.</em></p>
   `,
 	},
+	// {
+	// 	id: "frontend-evolution-2025",
+	// 	title: "The Evolution of Frontend Development in 2025",
+	// 	excerpt:
+	// 		"Exploring the latest trends, tools, and methodologies shaping modern web development.",
+	// 	date: "January 15, 2025",
+	// 	readTime: "8 min read",
+	// 	tags: ["Frontend", "React", "Next.js", "Web Development"],
+	// 	content: `
+	//     <p>Frontend development has undergone remarkable transformations in recent years, and 2025 continues to push the boundaries of what's possible in web development.</p>
+
+	//     <h2>The Rise of Server Components</h2>
+	//     <p>React Server Components have revolutionized how we think about rendering and data fetching. By moving computation to the server, we're achieving better performance and user experiences while maintaining the flexibility developers love.</p>
+
+	//     <h2>TypeScript Everywhere</h2>
+	//     <p>TypeScript adoption has reached new heights, with most modern frameworks providing first-class support. The benefits of type safety, better developer experience, and improved code maintainability are undeniable.</p>
+
+	//     <h2>The Future of Styling</h2>
+	//     <p>CSS-in-JS solutions continue to evolve, while utility-first frameworks like TailwindCSS have gained massive adoption. The debate between different styling approaches reflects the diversity and innovation in our ecosystem.</p>
+
+	//     <h2>Performance-First Mindset</h2>
+	//     <p>Core Web Vitals and user experience metrics have become central to development decisions. Tools like Next.js Image optimization and automatic code splitting are now standard practices.</p>
+
+	//     <p>As we move forward, the focus remains on creating better user experiences while maintaining developer productivity and code quality.</p>
+	//   `,
+	// },
+	// {
+	// 	id: "building-accessible-web-apps",
+	// 	title: "Building Accessible Web Applications: A Developer's Guide",
+	// 	excerpt:
+	// 		"Practical strategies for creating inclusive web experiences that work for everyone.",
+	// 	date: "January 10, 2025",
+	// 	readTime: "12 min read",
+	// 	tags: ["Accessibility", "UX", "Web Standards"],
+	// 	content: `
+	//     <p>Web accessibility isn't just a nice-to-have feature—it's a fundamental requirement for creating inclusive digital experiences.</p>
+
+	//     <h2>Understanding WCAG Guidelines</h2>
+	//     <p>The Web Content Accessibility Guidelines (WCAG) provide a comprehensive framework for making web content accessible. Understanding the four principles—Perceivable, Operable, Understandable, and Robust—is crucial.</p>
+
+	//     <h2>Semantic HTML: The Foundation</h2>
+	//     <p>Using proper HTML elements for their intended purpose is the first step toward accessibility. Screen readers and other assistive technologies rely on semantic markup to understand content structure.</p>
+
+	//     <h2>ARIA: When HTML Isn't Enough</h2>
+	//     <p>ARIA (Accessible Rich Internet Applications) attributes help bridge gaps when semantic HTML falls short, especially in complex interactive components.</p>
+
+	//     <h2>Testing for Accessibility</h2>
+	//     <p>Regular testing with screen readers, keyboard navigation, and automated tools like axe-core ensures your applications work for all users.</p>
+
+	//     <p>Remember: accessibility benefits everyone, not just users with disabilities. Clear navigation, good contrast, and logical structure improve the experience for all users.</p>
+	//   `,
+	// },
+	// {
+	// 	id: "firebase-nextjs-integration",
+	// 	title: "Mastering Firebase Integration with Next.js",
+	// 	excerpt:
+	// 		"A comprehensive guide to building full-stack applications with Firebase and Next.js.",
+	// 	date: "January 5, 2025",
+	// 	readTime: "15 min read",
+	// 	tags: ["Firebase", "Next.js", "Full-stack", "Authentication"],
+	// 	content: `
+	//     <p>Firebase and Next.js make a powerful combination for building modern web applications. This guide covers best practices for integration.</p>
+
+	//     <h2>Setting Up Firebase</h2>
+	//     <p>Proper Firebase configuration is crucial for security and performance. Always use environment variables for sensitive configuration data.</p>
+
+	//     <h2>Authentication Patterns</h2>
+	//     <p>Firebase Auth provides multiple authentication methods. Implementing proper session management and route protection is essential for secure applications.</p>
+
+	//     <h2>Firestore Best Practices</h2>
+	//     <p>Understanding Firestore's document-based structure and security rules is key to building scalable applications. Proper data modeling can significantly impact performance.</p>
+
+	//     <h2>Real-time Features</h2>
+	//     <p>Firebase's real-time capabilities shine in collaborative applications. Implementing efficient listeners and managing subscriptions prevents memory leaks.</p>
+
+	//     <h2>Deployment Considerations</h2>
+	//     <p>Deploying Firebase-powered Next.js applications requires attention to build optimization and environment configuration.</p>
+
+	//     <p>The combination of Firebase's backend services and Next.js's frontend capabilities enables rapid development of production-ready applications.</p>
+	//   `,
+	// },
 ];
 
 export default function BlogPage() {
