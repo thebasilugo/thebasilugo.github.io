@@ -245,34 +245,16 @@ interface SocialLinkProps {
   hoverColor: string
 }
 
-function SocialLink({
-	href,
-	icon: Icon,
-	label,
-	description,
-}: {
-	href: string;
-	icon: React.ElementType;
-	label: string;
-	description: string;
-}) {
-	return (
-		<a
-			href={href}
-			target="_blank"
-			rel="noopener noreferrer"
-			className="flex items-center group hover:bg-gray-800 p-3 rounded-lg transition-all"
-			aria-label={`${description}: ${label}`}
-		>
-			<div className="bg-gray-800 group-hover:bg-gray-700 p-3 rounded-full mr-4">
-				<Icon size={20} className="text-blue-400" aria-hidden="true" />
-			</div>
-			<div>
-				<p className="font-medium group-hover:text-blue-400 transition-colors">
-					{label}
-				</p>
-				<p className="text-sm text-gray-400">{description}</p>
-			</div>
-		</a>
-	);
+function SocialLink({ href, icon, label, hoverColor }: SocialLinkProps) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`group p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-gray-300 ${hoverColor} transition-all duration-300 hover:scale-110 hover:bg-white/20 hover:border-white/40 hover:shadow-lg`}
+      aria-label={label}
+    >
+      <div className="transform group-hover:scale-110 transition-transform duration-300">{icon}</div>
+    </a>
+  )
 }
