@@ -82,11 +82,12 @@ export default function CallToAction() {
     }
   }
 
-	const closeModal = () => {
-		setSuccess(false);
-		setHasSubmitted(false);
-		setErrorMessage("");
-	};
+  const closeModal = () => {
+    setStatus("idle")
+    setErrorMessage("")
+  }
+
+  const isFormValid = formData.name.trim() && formData.email.trim() && formData.message.trim().length >= 10
 
 	return (
 		<section
