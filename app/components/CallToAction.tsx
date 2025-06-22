@@ -8,40 +8,45 @@ import { CheckCircle, AlertCircle, Loader2, Send } from "lucide-react"
 import { GitHubIcon, LinkedInIcon, TwitterIcon, InstagramIcon, GmailIcon } from "./SocialIcons"
 
 export default function CallToAction() {
-	const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
-	const [message, setMessage] = useState("");
-	const [success, setSuccess] = useState(false);
-	const [loading, setLoading] = useState(false);
-	const [hasSubmitted, setHasSubmitted] = useState(false);
-	const [errorMessage, setErrorMessage] = useState("");
-	const isOnline = useOnlineStatus();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  })
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+  const [errorMessage, setErrorMessage] = useState("")
 
-	// Process queued forms when coming back online
-	// useEffect(() => {
-	//   if (isOnline && isFirebaseConfigured()) {
-	//     const processQueue = async () => {
-	//       const queuedForms = getQueuedContactForms()
-	//       if (queuedForms.length === 0) return
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
 
-	//       for (const form of queuedForms) {
-	//         try {
-	//           await addDoc(collection(db, "contacts"), {
-	//             ...form,
-	//             queuedAt: form.timestamp,
-	//             submittedAt: new Date(),
-	//           })
-	//         } catch (error) {
-	//           console.error("Error processing queued form:", error)
-	//         }
-	//       }
-
-	//       clearQueuedContactForms()
-	//     }
-
-	//     processQueue()
-	//   }
-	// }, [isOnline])
+  const validateForm = () => {
+    if (!formData.name.trim()) {
+      setErrorMessage("Name is required")
+      return false
+    }
+    if (!formData.email.trim()) {
+      setErrorMessage("Email is required")
+      return false
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      setErrorMessage("Please enter a valid email address")
+      return false
+    }
+    if (!formData.message.trim()) {
+      setErrorMessage("Message is required")
+      return false
+    }
+    if (formData.message.trim().length < 10) {
+      setErrorMessage("Message must be at least 10 characters long")
+      return false
+    }
+    return true
+  }
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
