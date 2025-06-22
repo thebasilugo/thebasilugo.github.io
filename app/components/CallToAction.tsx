@@ -48,55 +48,39 @@ export default function CallToAction() {
     return true
   }
 
-	const handleSubmit = async (e: React.FormEvent) => {
-		e.preventDefault();
-		setLoading(true);
-		setHasSubmitted(false);
-		setErrorMessage("");
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
 
-		const formData = {
-			name,
-			email,
-			message,
-			timestamp: new Date(),
-		};
+    if (!validateForm()) {
+      setStatus("error")
+      return
+    }
 
-		try {
-			if (!isOnline) {
-				// Store form data for later submission
-				queueContactForm(formData);
-				setSuccess(true);
-				setErrorMessage(
-					"You're offline. Your message will be sent when you're back online."
-				);
-				// } else if (isFirebaseConfigured()) {
-				//   // Submit directly to Firebase
-				//   await addDoc(collection(db, "contacts"), formData)
-				//   setSuccess(true)
-			} else {
-				// Firebase not configured, simulate success
-				console.log("Firebase not configured. Form data:", formData);
-				setSuccess(true);
-				setErrorMessage(
-					"Demo mode: Firebase not configured. Your message would be sent in production."
-				);
-			}
+    setStatus("loading")
+    setErrorMessage("")
 
-			// Clear form fields on success
-			setName("");
-			setEmail("");
-			setMessage("");
-		} catch (error) {
-			console.error("Error submitting message:", error);
-			setSuccess(false);
-			setErrorMessage(
-				"An error occurred while sending your message. Please try again."
-			);
-		} finally {
-			setLoading(false);
-			setHasSubmitted(true);
-		}
-	};
+    try {
+      await addDoc(collection(db, "contacts"), {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        message: formData.message.trim(),
+        timestamp: serverTimestamp(),
+        userAgent: navigator.userAgent,
+        referrer: document.referrer || "direct",
+      })
+
+      setStatus("success")
+      setFormData({ name: "", email: "", message: "" })
+
+      setTimeout(() => {
+        setStatus("idle")
+      }, 5000)
+    } catch (error) {
+      console.error("Error submitting message:", error)
+      setStatus("error")
+      setErrorMessage("Failed to send message. Please try again or contact me directly.")
+    }
+  }
 
 	const closeModal = () => {
 		setSuccess(false);
