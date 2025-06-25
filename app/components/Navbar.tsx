@@ -1,22 +1,24 @@
 "use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import HamburgerNav from "./HamburgerNav"
-import { Moon, Sun } from "lucide-react"
-import { useOnlineStatus } from "@/app/hooks/use-online-status"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import HamburgerNav from "./HamburgerNav";
+import { Moon, Sun } from "lucide-react";
+import { useOnlineStatus } from "@/app/hooks/use-online-status";
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [theme, setTheme] = useState<"light" | "dark">("light")
-  const [scrolled, setScrolled] = useState(false)
-  const isOnline = useOnlineStatus()
+	const [isOpen, setIsOpen] = useState(false);
+	const [theme, setTheme] = useState<"light" | "dark">("light");
+	const [scrolled, setScrolled] = useState(false);
+	const isOnline = useOnlineStatus();
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+	useEffect(() => {
+		const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
+		const prefersDark = window.matchMedia(
+			"(prefers-color-scheme: dark)"
+		).matches;
 
     if (savedTheme) {
       setTheme(savedTheme)
