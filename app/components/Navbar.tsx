@@ -20,13 +20,13 @@ export default function Navbar() {
 			"(prefers-color-scheme: dark)"
 		).matches;
 
-    if (savedTheme) {
-      setTheme(savedTheme)
-      document.documentElement.classList.toggle("dark", savedTheme === "dark")
-    } else if (prefersDark) {
-      setTheme("dark")
-      document.documentElement.classList.add("dark")
-    }
+		if (savedTheme) {
+			setTheme(savedTheme);
+			document.documentElement.classList.toggle("dark", savedTheme === "dark");
+		} else if (prefersDark) {
+			setTheme("dark");
+			document.documentElement.classList.add("dark");
+		}
 
 		const handleScroll = () => {
 			if (window.scrollY > 10) {
@@ -185,21 +185,21 @@ export default function Navbar() {
 }
 
 function MobileNavLink({
-  href,
-  onClick,
-  children,
+	href,
+	onClick,
+	children,
 }: {
-  href: string
-  onClick: () => void
-  children: React.ReactNode
+	href: string;
+	onClick: () => void;
+	children: React.ReactNode;
 }) {
-  return (
-    <Link
-      href={href}
-      onClick={onClick}
-      className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-colors"
-    >
-      {children}
-    </Link>
-  )
+	return (
+		<Link
+			href={href}
+			onClick={onClick}
+			className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-colors"
+		>
+			{children}
+		</Link>
+	);
 }
