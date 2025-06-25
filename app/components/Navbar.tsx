@@ -28,28 +28,28 @@ export default function Navbar() {
       document.documentElement.classList.add("dark")
     }
 
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setScrolled(true)
-      } else {
-        setScrolled(false)
-      }
-    }
+		const handleScroll = () => {
+			if (window.scrollY > 10) {
+				setScrolled(true);
+			} else {
+				setScrolled(false);
+			}
+		};
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
 
-  const toggleMenu = () => {
-    setIsOpen((prev) => !prev)
-  }
+	const toggleMenu = () => {
+		setIsOpen((prev) => !prev);
+	};
 
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light"
-    setTheme(newTheme)
-    localStorage.setItem("theme", newTheme)
-    document.documentElement.classList.toggle("dark", newTheme === "dark")
-  }
+	const toggleTheme = () => {
+		const newTheme = theme === "light" ? "dark" : "light";
+		setTheme(newTheme);
+		localStorage.setItem("theme", newTheme);
+		document.documentElement.classList.toggle("dark", newTheme === "dark");
+	};
 
   return (
     <nav
