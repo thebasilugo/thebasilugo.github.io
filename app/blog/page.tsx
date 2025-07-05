@@ -6,6 +6,7 @@ import { ArrowLeft, Share2, Check } from "lucide-react";
 
 interface BlogPost {
 	id: string;
+	slug: string;
 	title: string;
 	excerpt: string;
 	content: string;
