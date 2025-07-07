@@ -64,6 +64,52 @@ const blogPosts: BlogPost[] = [
     <p><em>This isn’t the final destination. It’s just the beginning.</em></p>
   `,
 	},
+	{
+		id: "searching-creativity",
+		title: "Searching for Clues: Creativity First",
+		excerpt:
+			"This week, I’m leaning into creativity as I search for my ikigai. No guide, no map—just curiosity and a bit of courage.",
+		date: "June 24, 2025",
+		readTime: "3 min read",
+		tags: ["Creativity", "Self Discovery", "Ikigai", "Design Thinking"],
+		content: `
+    <p>It’s not been easy—trying to figure out something with no guide, no map, and no exact endpoint. But it’s been real. Raw. Honest. And slowly, it’s becoming meaningful.</p>
+
+    <p>Over the past few weeks, I’ve been exploring different words that pull at my curiosity: <em>creativity</em>, <em>innovation</em>, <em>intricacy</em>, <em>fun</em>, <em>technicality</em>. These are puzzle pieces that I think might connect to my <strong>ikigai</strong>.</p>
+
+    <hr />
+
+    <h2>This Week: Creativity</h2>
+
+    <p>This week, I’m leaning into <strong>creativity</strong>. Not just “art” or “design,” but creativity as a mindset—seeing differently, building freely, remixing the usual into something unusual.</p>
+
+    <p>I’ve noticed that when I’m doing something creative—whether it’s designing in Figma, writing a blog post, building a UI from scratch, or even editing a short video—time disappears. That’s not coincidence. That’s alignment.</p>
+
+    <blockquote>
+      <p>“Creativity doesn’t wait for that perfect moment. It fashions its own perfect moments out of ordinary ones.” – Bruce Garrabrandt</p>
+    </blockquote>
+
+    <p>So this week, I’m asking myself:</p>
+    <ul>
+      <li>What creative work gives me energy—even when it’s hard?</li>
+      <li>Where does my curiosity naturally flow?</li>
+      <li>What am I building that feels more like play than pressure?</li>
+    </ul>
+
+    <h2>Letting It Be Messy</h2>
+
+    <p>Truth is, I don’t have it all figured out. But I’m learning to embrace the mess. The search is part of the story. And documenting it—like this—is helping me reflect and move with more intention.</p>
+
+    <p><img src="/images/notebook-sketch.jpg" alt="A handwritten notebook with messy sketches, post-its, and ideas scattered across the page" /></p>
+
+    <p>Maybe creativity is not just one piece of my ikigai—it might be the thread tying it all together.</p>
+
+    <p>Let’s see what next week brings.</p>
+
+    <p><em>If you’re also searching, try choosing one word to explore this week. Just one. Sit with it. Play with it. You might be surprised where it takes you.</em></p>
+  `,
+	},
+
 	// {
 	// 	id: "frontend-evolution-2025",
 	// 	title: "The Evolution of Frontend Development in 2025",
