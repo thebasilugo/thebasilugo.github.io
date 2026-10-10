@@ -1,0 +1,119 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, experience, screen } from '../data/site';
+import { work } from '../data/work';
+const filters = [['all', 'All'], ['software', 'Software'], ['security', 'Security'], ['creative', 'Creative']];
+const apps = work.filter((w) => w.live && w.kinds.includes('software'));
+---
+<Base>
+  <div class="wrap">
+    <section class="hero" aria-labelledby="h">
+      <h1 id="h"><span>Basil</span><span>Ugochukwu</span></h1>
+      <p>Software developer. Cloud security trainee. Actor and storyteller, based in Lagos.</p>
+    </section>
+
+    <section class="sec" id="work" aria-labelledby="work-h">
+      <h2 id="work-h">Selected work</h2>
+      <div>
+        <div class="filters" role="group" aria-label="Filter work">
+          {filters.map(([k, l], i) => <button type="button" data-filter={k} aria-pressed={i === 0}>{l}</button>)}
+        </div>
+        <ul class="list" id="worklist">
+          {work.map((w) => (
+            <li data-kinds={w.kinds.join(' ')}>
+              <a class="row" href={`/work/${w.slug}/`}><b>{w.title}</b><span>{w.summary}</span><small>{w.year ?? ''}</small></a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="sec" id="security" aria-labelledby="sec-h">
+      <h2 id="sec-h">Security</h2>
+      <div class="prose">
+        <p>I'm training in cloud security and infrastructure at Snapnet, and my final-year research built a machine-learning intrusion detection system that became a co-authored IEEE paper. Earlier, at the Nigerian Ports Authority, I supported network operations and security-focused initiatives.</p>
+        <p><a href="/work/cyber-attack-detection/">Read the research project</a></p>
+      </div>
+    </section>
+
+    <section class="sec" id="screen" aria-labelledby="scr-h">
+      <h2 id="scr-h">Stage and screen</h2>
+      <div>
+        {screen.length === 0 ? (
+          <p class="note">Headshots, short films, monologues and a showreel are being assembled. For casting or collaboration, write to <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+        ) : (
+          <ul class="list">{screen.map((s) => <li>{s.href ? <a class="row" href={s.href}><b>{s.title}</b><span>{s.type}{s.role ? `, ${s.role}` : ''}</span><small>{s.year ?? ''}</small></a> : <div class="row"><b>{s.title}</b><span>{s.type}</span><small>{s.year ?? ''}</small></div>}</li>)}</ul>
+        )}
+      </div>
+    </section>
+
+    <section class="sec" id="about" aria-labelledby="ab-h">
+      <h2 id="ab-h">About</h2>
+      <div>
+        <div class="prose">
+          <p>I build web software, I'm learning how systems get attacked and defended, and I act and direct. They feel like one practice to me: each is about paying attention to how people actually behave.</p>
+        </div>
+        <ul class="exp" aria-label="Experience">
+          {experience.map((e) => <li><b>{e.role}</b><small>{e.org}, {e.period}</small><span>{e.note}</span></li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="sec" id="contact" aria-labelledby="ct-h">
+      <h2 id="ct-h">Contact</h2>
+      <div>
+        <form data-form="contact" data-mailto={site.email} data-endpoint={site.formEndpoint}>
+          <input type="hidden" name="form" value="contact" />
+          <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <label>Name<input name="name" required autocomplete="name" /></label>
+          <label>Email<input name="email" type="email" required autocomplete="email" /></label>
+          <label>Message<textarea name="message" rows="5" required></textarea></label>
+          <button type="submit">Send message</button>
+          <p class="status" role="status"></p>
+        </form>
+        <form data-form="tester" data-mailto={site.email} data-endpoint={site.formEndpoint}>
+          <input type="hidden" name="form" value="tester" />
+          <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <fieldset>
+            <legend>Test my apps</legend>
+            {apps.map((a) => <label><input type="checkbox" name="apps" value={a.title} />{a.title}</label>)}
+          </fieldset>
+          <label>Name<input name="name" required autocomplete="name" /></label>
+          <label>Email<input name="email" type="email" required autocomplete="email" /></label>
+          <button type="submit">Join the tester list</button>
+          <p class="status" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <script is:inline>
+    var btns = document.querySelectorAll('[data-filter]');
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        btns.forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+        document.querySelectorAll('#worklist li').forEach(function (li) {
+          li.hidden = b.dataset.filter !== 'all' && li.dataset.kinds.split(' ').indexOf(b.dataset.filter) < 0;
+        });
+      });
+    });
+    document.querySelectorAll('form[data-form]').forEach(function (f) {
+      f.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var s = f.querySelector('.status'), d = new FormData(f);
+        if (d.get('website')) return;
+        var ep = f.dataset.endpoint;
+        if (!ep) {
+          var body = Array.from(d.entries()).filter(function (p) { return p[0] !== 'website' && p[0] !== 'form'; }).map(function (p) { return p[0] + ': ' + p[1]; }).join('\n');
+          location.href = 'mailto:' + f.dataset.mailto + '?subject=' + encodeURIComponent(f.dataset.form === 'tester' ? 'Tester request' : 'Portfolio message') + '&body=' + encodeURIComponent(body);
+          s.textContent = 'Opening your email app. Nothing has been sent yet.';
+          return;
+        }
+        s.textContent = 'Sending...';
+        fetch(ep, { method: 'POST', body: d, headers: { Accept: 'application/json' } })
+          .then(function (r) { if (!r.ok) throw 0; f.reset(); s.textContent = 'Sent. I will reply by email.'; })
+          .catch(function () { s.textContent = 'Could not send. Email ' + f.dataset.mailto + ' instead.'; });
+      });
+    });
+  </script>
+</Base>

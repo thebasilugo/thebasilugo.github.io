@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import { work } from '../../data/work';
+export function getStaticPaths() { return work.map((w) => ({ params: { slug: w.slug }, props: { w } })); }
+const { w } = Astro.props;
+---
+<Base title={`${w.title} | Basil Ugochukwu`} description={w.summary}>
+  <div class="wrap">
+    <article class="case">
+      <p><a href="/#work">All work</a></p>
+      <h1>{w.title}</h1>
+      <p class="note">{w.summary}</p>
+      <h2>The problem</h2><p>{w.problem}</p>
+      <h2>My contribution</h2><p>{w.role}</p>
+      {w.decisions && <><h2>Technical decisions</h2><ul>{w.decisions.map((d) => <li>{d}</li>)}</ul></>}
+      {w.outcome && <><h2>Outcome</h2><p>{w.outcome}</p></>}
+      <h2>Built with</h2><p>{w.stack.join(', ')}</p>
+      <p>
+        {w.live && <a href={w.live} target="_blank" rel="noopener">Open the live site</a>}
+        {w.code && <> &nbsp; <a href={w.code} target="_blank" rel="noopener">View the code</a></>}
+      </p>
+    </article>
+  </div>
+</Base>
